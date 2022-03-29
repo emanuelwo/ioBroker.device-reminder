@@ -344,13 +344,11 @@ class deviceReminder extends utils.Adapter {
                  * @param {string | string} statusDevice
                  * @param {string | number} consumpLive
                  * @param {string | number} averageConsumption
-                 * @param {string | number} totalConsumption
-                 * @param {string | number} startTotalConsumption
                  * @param {string | number} runtime
                  * @param {string | number} lastRuntime
                  * @param {string | string} messageDP
                  */
-                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, totalConsumptionPath, startTotalConsumptionPath, doNotDisturb, objVal) {
+                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, doNotDisturb, objVal) {
                     // DPs
                     this.enabled = obj.enabled;
                     this.name = obj.name;
@@ -361,8 +359,6 @@ class deviceReminder extends utils.Adapter {
                     // script intern
                     this.pathStatus = statusDevice;
                     this.pathLiveConsumption = consumpLivePath;
-                    this.pathTotalConsumption = totalConsumptionPath;
-                    this.pathTotalStartConsumption = startTotalConsumptionPath;
                     this.timeTotal = runtimePath;
                     this.timeTotalMs = runtimeMSPath;
                     this.lastRuntime = lastRuntimePath;
