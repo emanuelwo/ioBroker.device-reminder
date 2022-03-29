@@ -294,7 +294,7 @@ class deviceReminder extends utils.Adapter {
 
         // Event-based states
         value.consumption.val = await this.getCheckedState('foreign', value.consumption.path, 0);
-        //value.consumptionTotal.val = await this.getCheckedState('foreign', value.consumptionTotal.path, 0);
+        value.consumptionTotal.val = await this.getCheckedState('foreign', value.consumptionTotal.path, 0);
         value.switch.val = await this.getCheckedState('foreign', value.switch.path, false);
         value.dnd.val = await this.getCheckedState(null, value.dnd.path, false);
         value.runtimeMax.val = await this.getCheckedState(null, value.runtimeMax.path, 0);
@@ -311,7 +311,8 @@ class deviceReminder extends utils.Adapter {
         // setState
         this.setStateAsync(device.runtimeMaxDP, await value.runtimeMax.val, true);
         this.setStateAsync(device.pathLiveConsumption, await value.consumption.val, true);
-        //this.setStateAsync(device.pathTotalConsumption, await value.consumptionTotal.val, true);
+        this.setStateAsync(device.pathTotalConsumption, await value.consumptionTotal.val, true);
+        this.setStateAsync(device.pathStartTotalConsumption, await value.consumptionTotal.val, true);
         this.setStateAsync(device.dnd, value.dnd.val, true);
         this.setStateAsync(device.lastOperations, `${value.dateJSON.val}`, true);
 
@@ -345,7 +346,7 @@ class deviceReminder extends utils.Adapter {
                  * @param {string | number} consumpLive
                  * @param {string | number} averageConsumption
                  * @param {string | number} totalConsumption
-                 * @param {string | number} 
+                 * @param {string | number} startTotalConsumption
                  * @param {string | number} runtime
                  * @param {string | number} lastRuntime
                  * @param {string | string} messageDP
