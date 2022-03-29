@@ -753,7 +753,7 @@ class deviceReminder extends utils.Adapter {
             device.startMessageSent = true; // startMessage wurde versendet
             device.endMessageSent = false; // Ende Benachrichtigung freigeben
 
-            this.setStateAsync(device.pathStartTotalConsumption, this.values[id].consumptionTotal.val, true);
+            this.setStateAsync(device.pathStartTotalConsumption, value.consumptionTotal.val, true);
         };
 
         // device in Betrieb
@@ -766,6 +766,7 @@ class deviceReminder extends utils.Adapter {
                 this.log.debug(`[${JSON.stringify(device.name)}]: timeout autoOff gelöscht`);
             };
             this.setStatus(id, 1);
+            this.setStateAsync(device.pathStartTotalConsumption, value.consumptionTotal.val, true);
             this.time(id);
         } else if (device.resultEnd < device.endValue && device.resultEnd != null && device.started && device.arrEnd.length >= (device.endCount * (2 / 3))) { // geraet muss mind. 1x ueber startValue gewesen sein, arrEnd muss voll sein und ergebis aus arrEnd unter endValue
             // Vorgang vom device beendet
