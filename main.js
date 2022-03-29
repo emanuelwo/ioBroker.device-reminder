@@ -245,6 +245,7 @@ class deviceReminder extends utils.Adapter {
                     //subscribe states
                     this.log.debug(`[SUBSCRIBE]: ${device.dnd}: ${device.runtimeMaxDP}: ${device.currentConsumption}: ${device.totalConsumption}: ${device.switchPower}`)
                     this.subscribeStates(device.dnd);
+                    this.subscribeStates(device.startTotalConsumption);
                     this.subscribeStates(device.runtimeMaxDP);
                     this.subscribeForeignStates(device.currentConsumption);
                     this.subscribeForeignStates(device.totalConsumption);
@@ -313,7 +314,7 @@ class deviceReminder extends utils.Adapter {
         this.setStateAsync(device.runtimeMaxDP, await value.runtimeMax.val, true);
         this.setStateAsync(device.pathLiveConsumption, await value.consumption.val, true);
         this.setStateAsync(device.pathTotalConsumption, await value.consumptionTotal.val, true);
-        this.setStateAsync(device.startTotalConsumption, await value.startTotalConsumption.val, true);
+        this.setStateAsync(device.startTotalConsumption, value.startTotalConsumption.val, true);
         this.setStateAsync(device.dnd, value.dnd.val, true);
         this.setStateAsync(device.lastOperations, `${value.dateJSON.val}`, true);
 
@@ -347,7 +348,6 @@ class deviceReminder extends utils.Adapter {
                  * @param {string | number} consumpLive
                  * @param {string | number} averageConsumption
                  * @param {string | number} totalConsumption
-                 * @param {string | number} startTotalConsumption
                  * @param {string | number} runtime
                  * @param {string | number} lastRuntime
                  * @param {string | string} messageDP
