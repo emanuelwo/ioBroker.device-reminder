@@ -752,6 +752,8 @@ class deviceReminder extends utils.Adapter {
 
             device.startMessageSent = true; // startMessage wurde versendet
             device.endMessageSent = false; // Ende Benachrichtigung freigeben
+
+            this.setStateAsync(device.pathStartTotalConsumption, this.values[id].consumptionTotal.val, true);
         };
 
         // device in Betrieb
@@ -841,7 +843,7 @@ class deviceReminder extends utils.Adapter {
         };
 
         this.setStateAsync(device.pathLiveConsumption, this.values[id].consumption.val, true);
-        this.setStateAsync(device.pathTotalConsumption, this.values[id].consumptionTotal.val + 1, true);
+        this.setStateAsync(device.pathTotalConsumption, this.values[id].consumptionTotal.val, true);
 
         this.log.debug(`[${JSON.stringify(device.name)}]: Auswertung beendet`);
     };
