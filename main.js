@@ -1131,7 +1131,16 @@ class deviceReminder extends utils.Adapter {
                 break;
             case "end":
                 msg = await this.createObjMsg(device.endMessageText);
-                this.log.debug(`[${JSON.stringify(device.name)}]: endmessage: ${JSON.stringify(device.endMessageText)}`);
+
+                const startConsumption = await this.getCheckedState(null, device.pathStartTotalConsumption, 0);
+                const endConsumption = await this.getCheckedState(null, device.pathTotalConsumption, 0);
+                const consumption = endConsumption - startConsumption;
+                const consumptionDevided = consumption / 1000.0
+
+                msg = msg.replace("{consumption}", consumption);
+                msg = msg.replace("{consumptionInWh}", consumptionDevided);
+
+                this.log.debug(`[${JSON.stringify(device.name)}]: endmessage: ${JSON.stringify(msg)}`);
                 sendMsg(id, msg);
                 if (!bPresence) {
                     const objTemp = {
