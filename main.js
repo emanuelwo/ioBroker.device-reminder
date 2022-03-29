@@ -344,21 +344,25 @@ class deviceReminder extends utils.Adapter {
                  * @param {string | string} statusDevice
                  * @param {string | number} consumpLive
                  * @param {string | number} averageConsumption
+                 * @param {string | number} totalConsumption
+                 * @param {string | number} 
                  * @param {string | number} runtime
                  * @param {string | number} lastRuntime
                  * @param {string | string} messageDP
                  */
-                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, doNotDisturb, objVal) {
+                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, totalConsumptionPath, startTotalConsumptionPath, doNotDisturb, objVal) {
                     // DPs
                     this.enabled = obj.enabled;
                     this.name = obj.name;
                     this.type = obj.type;
                     this.currentConsumption = obj.pathConsumption;
-                    this.totalConsumption = obj.pathTotalConsumption;
+                    this.totalConsumption = obj.pathExternalTotalConsumption;
                     this.switchPower = obj.pathSwitch;
                     // script intern
                     this.pathStatus = statusDevice;
                     this.pathLiveConsumption = consumpLivePath;
+                    this.pathTotalConsumption = totalConsumptionPath;
+                    this.pathStartTotalConsumption = startTotalConsumptionPath;
                     this.timeTotal = runtimePath;
                     this.timeTotalMs = runtimeMSPath;
                     this.lastRuntime = lastRuntimePath;
@@ -545,6 +549,8 @@ class deviceReminder extends utils.Adapter {
                 this.adapterDPs[name].messageDP,
                 this.adapterDPs[name].autoOffDP,
                 this.adapterDPs[name].averageConsumption,
+                this.adapterDPs[name].totalConsumption,
+                this.adapterDPs[name].startTotalConsumption,
                 this.adapterDPs[name].doNotDisturb,
                 objVal);
 
