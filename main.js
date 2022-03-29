@@ -350,7 +350,7 @@ class deviceReminder extends utils.Adapter {
                  * @param {string | number} lastRuntime
                  * @param {string | string} messageDP
                  */
-                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, totalConsumptionPath, totalStartConsumptionPath, doNotDisturb, objVal) {
+                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, totalConsumptionPath, startTotalConsumptionPath, doNotDisturb, objVal) {
                     // DPs
                     this.enabled = obj.enabled;
                     this.name = obj.name;
