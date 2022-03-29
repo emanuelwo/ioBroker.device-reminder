@@ -295,8 +295,9 @@ class deviceReminder extends utils.Adapter {
         // Event-based states
         value.consumption.val = await this.getCheckedState('foreign', value.consumption.path, 0);
         value.consumptionTotal.val = await this.getCheckedState('foreign', value.consumptionTotal.path, 0);
-        value.switch.val = await this.getCheckedState('foreign', value.switch.path, false);
         value.dnd.val = await this.getCheckedState(null, value.dnd.path, false);
+        value.switch.val = await this.getCheckedState('foreign', value.switch.path, false);
+        value.startTotalConsumption.val = await this.getCheckedState(null, value.startTotalConsumption.path, value.consumptionTotal.val);
         value.runtimeMax.val = await this.getCheckedState(null, value.runtimeMax.path, 0);
         value.dateJSON.val = await this.getCheckedState(null, value.dateJSON.path, '');
 
@@ -312,7 +313,7 @@ class deviceReminder extends utils.Adapter {
         this.setStateAsync(device.runtimeMaxDP, await value.runtimeMax.val, true);
         this.setStateAsync(device.pathLiveConsumption, await value.consumption.val, true);
         this.setStateAsync(device.pathTotalConsumption, await value.consumptionTotal.val, true);
-        this.setStateAsync(device.pathStartTotalConsumption, await value.consumptionTotal.val, true);
+        this.setStateAsync(device.startTotalConsumption, await value.startTotalConsumption.val, true);
         this.setStateAsync(device.dnd, value.dnd.val, true);
         this.setStateAsync(device.lastOperations, `${value.dateJSON.val}`, true);
 
@@ -351,7 +352,7 @@ class deviceReminder extends utils.Adapter {
                  * @param {string | number} lastRuntime
                  * @param {string | string} messageDP
                  */
-                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, totalConsumptionPath, startTotalConsumptionPath, doNotDisturb, objVal) {
+                constructor(obj, statusDevice, consumpLivePath, runtimePath, runtimeMSPath, lastRuntimePath, runtimeMaxDP, alertRuntimeDP, lastOperations, messageDP, autoOffDP, averageConsumption, totalConsumptionPath, startTotalConsumption, doNotDisturb, objVal) {
                     // DPs
                     this.enabled = obj.enabled;
                     this.name = obj.name;
@@ -363,7 +364,7 @@ class deviceReminder extends utils.Adapter {
                     this.pathStatus = statusDevice;
                     this.pathLiveConsumption = consumpLivePath;
                     this.pathTotalConsumption = totalConsumptionPath;
-                    this.pathStartTotalConsumption = startTotalConsumptionPath;
+                    this.startTotalConsumption = startTotalConsumption;
                     this.timeTotal = runtimePath;
                     this.timeTotalMs = runtimeMSPath;
                     this.lastRuntime = lastRuntimePath;
@@ -753,7 +754,7 @@ class deviceReminder extends utils.Adapter {
             device.startMessageSent = true; // startMessage wurde versendet
             device.endMessageSent = false; // Ende Benachrichtigung freigeben
 
-            this.setStateAsync(device.pathStartTotalConsumption, value.consumptionTotal.val, true);
+            this.setStateAsync(device.startTotalConsumption, value.consumptionTotal.val, true);
         };
 
         // device in Betrieb
