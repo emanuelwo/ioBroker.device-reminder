@@ -195,6 +195,12 @@ class deviceReminder extends utils.Adapter {
                         target: 'consumption',
                         type: 'value'
                     };
+                    this.trigger[device.totalConsumption] = {
+                        id: id,
+                        path: device.totalConsumption,
+                        target: 'totalConsumption',
+                        type: 'value'
+                    };
                     if (device.switchPower !== undefined && device.switchPower !== ``) this.trigger[device.switchPower] = {
                         id: id,
                         path: device.switchPower,
@@ -207,6 +213,11 @@ class deviceReminder extends utils.Adapter {
                         id: id,
                         consumption: {
                             path: device.currentConsumption,
+                            val: 0,
+                            type: 'number'
+                        },
+                        totalConsumption: {
+                            path: device.totalConsumption,
                             val: 0,
                             type: 'number'
                         },
@@ -232,10 +243,11 @@ class deviceReminder extends utils.Adapter {
                     };
 
                     //subscribe states
-                    this.log.debug(`[SUBSCRIBE]: ${device.dnd}: ${device.runtimeMaxDP}: ${device.currentConsumption}: ${device.switchPower}`)
+                    this.log.debug(`[SUBSCRIBE]: ${device.dnd}: ${device.runtimeMaxDP}: ${device.currentConsumption}: ${device.totalConsumption}: ${device.switchPower}`)
                     this.subscribeStates(device.dnd);
                     this.subscribeStates(device.runtimeMaxDP);
                     this.subscribeForeignStates(device.currentConsumption);
+                    this.subscribeForeignStates(device.totalConsumption);
                     if (device.switchPower !== '' && device.switchPower !== undefined) {
                         this.subscribeForeignStates(device.switchPower);
                     };
@@ -340,6 +352,7 @@ class deviceReminder extends utils.Adapter {
                     this.name = obj.name;
                     this.type = obj.type;
                     this.currentConsumption = obj.pathConsumption;
+                    this.totalConsumption = obj.pathTotalConsumption;
                     this.switchPower = obj.pathSwitch;
                     // script intern
                     this.pathStatus = statusDevice;
@@ -900,6 +913,7 @@ class deviceReminder extends utils.Adapter {
                 this.log.debug(`[${JSON.stringify(device.name)}]: resultTemp start: ${device.resultStart}`);
                 this.log.debug(`[${JSON.stringify(device.name)}]: Länge array start: ${device.arrStart.length}, Inhalt: [${device.arrStart}]`);
                 this.setStateAsync(device.averageConsumption, device.resultStart, true);
+                this.setStateAsync(device.startTotalConsumption, device.totalConsumption, true);
                 break;
             };
             case "end": {
