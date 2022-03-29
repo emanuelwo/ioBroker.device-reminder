@@ -604,23 +604,25 @@ class deviceReminder extends utils.Adapter {
 
         // try {
         const trigger = this.trigger[id];
-        const valueType = `"${this.values[trigger.id][trigger.target].type}"`;
-        let dpType = `"${typeof state.val}"`;
-        const idPath = id.split('.');
+        if(trigger) {
+            const valueType = `"${this.values[trigger.id][trigger.target].type}"`;
+            let dpType = `"${typeof state.val}"`;
+            const idPath = id.split('.');
 
-        switch (trigger.type) {
-            case 'value':
-                if (dpType = valueType) {
-                    this.values[trigger.id][trigger.target].val = state.val;
-                    if (!state.ack && (`${this.name}` === `${idPath[0]}`)) {
-                        this.setStateAsync(this.values[trigger.id][trigger.target].path, state.val, true);
+            switch (trigger.type) {
+                case 'value':
+                    if (dpType = valueType) {
+                        this.values[trigger.id][trigger.target].val = state.val;
+                        if (!state.ack && (`${this.name}` === `${idPath[0]}`)) {
+                            this.setStateAsync(this.values[trigger.id][trigger.target].path, state.val, true);
+                        };
                     };
-                };
-                break;
-            case 'presence':
-                this.values[trigger.id].val = state.val;
-                break;
-        };
+                    break;
+                case 'presence':
+                    this.values[trigger.id].val = state.val;
+                    break;
+            };
+        }
         // } catch (error) {
         //     this.log.error(`[onStateChange] <${JSON.stringify(this.trigger[id])}>`);
         //     this.log.error(`[onStateChange] <${error}>`);
