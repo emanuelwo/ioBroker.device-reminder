@@ -841,9 +841,7 @@ class deviceReminder extends utils.Adapter {
         };
 
         this.setStateAsync(device.pathLiveConsumption, this.values[id].consumption.val, true);
-        if(this.values[id] && this.values[id].consumptionTotal && this.values[id].consumptionTotal.val) {
-            this.setStateAsync(device.pathTotalConsumption, this.values[id]?.consumptionTotal?.val, true);
-        }
+        this.setStateAsync(device.pathTotalConsumption, this.values[id].consumptionTotal.val + 1, true);
 
         this.log.debug(`[${JSON.stringify(device.name)}]: Auswertung beendet`);
     };
