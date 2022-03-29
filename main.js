@@ -913,7 +913,7 @@ class deviceReminder extends utils.Adapter {
                 this.log.debug(`[${JSON.stringify(device.name)}]: resultTemp start: ${device.resultStart}`);
                 this.log.debug(`[${JSON.stringify(device.name)}]: Länge array start: ${device.arrStart.length}, Inhalt: [${device.arrStart}]`);
                 this.setStateAsync(device.averageConsumption, device.resultStart, true);
-                this.setStateAsync(device.startTotalConsumption, device.totalConsumption, true);
+                //this.setStateAsync(device.startTotalConsumption, device.totalConsumption, true);
                 break;
             };
             case "end": {
