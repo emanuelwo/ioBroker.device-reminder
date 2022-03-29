@@ -311,7 +311,7 @@ class deviceReminder extends utils.Adapter {
         // setState
         this.setStateAsync(device.runtimeMaxDP, await value.runtimeMax.val, true);
         this.setStateAsync(device.pathLiveConsumption, await value.consumption.val, true);
-        this.setStateAsync(device.pathLiveConsumption, await value.consumptionTotal.val, true);
+        this.setStateAsync(device.pathTotalConsumption, await value.consumptionTotal.val, true);
         this.setStateAsync(device.dnd, value.dnd.val, true);
         this.setStateAsync(device.lastOperations, `${value.dateJSON.val}`, true);
 
@@ -362,7 +362,7 @@ class deviceReminder extends utils.Adapter {
                     this.pathStatus = statusDevice;
                     this.pathLiveConsumption = consumpLivePath;
                     this.pathTotalConsumption = totalConsumptionPath;
-                    this.pathTtoalStartConsumption = startTotalConsumptionPath;
+                    this.pathTotalStartConsumption = startTotalConsumptionPath;
                     this.timeTotal = runtimePath;
                     this.timeTotalMs = runtimeMSPath;
                     this.lastRuntime = lastRuntimePath;
