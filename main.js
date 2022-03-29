@@ -294,7 +294,7 @@ class deviceReminder extends utils.Adapter {
 
         // Event-based states
         value.consumption.val = await this.getCheckedState('foreign', value.consumption.path, 0);
-        value.consumptionTotal.val = await this.getCheckedState('foreign', obj.pathExternalTotalConsumption, 0);
+        value.consumptionTotal.val = await this.getCheckedState('foreign', value.consumptionTotal.path, 0);
         value.switch.val = await this.getCheckedState('foreign', value.switch.path, false);
         value.dnd.val = await this.getCheckedState(null, value.dnd.path, false);
         value.runtimeMax.val = await this.getCheckedState(null, value.runtimeMax.path, 0);
@@ -766,7 +766,6 @@ class deviceReminder extends utils.Adapter {
                 this.log.debug(`[${JSON.stringify(device.name)}]: timeout autoOff gelöscht`);
             };
             this.setStatus(id, 1);
-            this.setStateAsync(device.pathStartTotalConsumption, value.consumptionTotal.val, true);
             this.time(id);
         } else if (device.resultEnd < device.endValue && device.resultEnd != null && device.started && device.arrEnd.length >= (device.endCount * (2 / 3))) { // geraet muss mind. 1x ueber startValue gewesen sein, arrEnd muss voll sein und ergebis aus arrEnd unter endValue
             // Vorgang vom device beendet
