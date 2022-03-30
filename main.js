@@ -1138,7 +1138,11 @@ class deviceReminder extends utils.Adapter {
                 const consumptionDevided = consumption / 1000.0
 
                 msg = msg.replace("{consumption}", consumption);
-                msg = msg.replace("{consumptionInWh}", consumptionDevided);
+                msg = msg.replace("{consumption in Wh}", consumptionDevided);
+
+                timeTotal
+                const timeTotal = await this.getCheckedState(null, device.timeTotal, 0);
+                msg = msg.replace("{runtime}", timeTotal);
 
                 this.log.debug(`[${JSON.stringify(device.name)}]: endmessage: ${JSON.stringify(msg)}`);
                 sendMsg(id, msg);
