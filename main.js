@@ -734,7 +734,6 @@ class deviceReminder extends utils.Adapter {
 
             device.startMessageSent = true; // startMessage wurde versendet
             device.endMessageSent = false; // Ende Benachrichtigung freigeben
-            value.consumptionTotal.val
 
             const totalConsumption = await this.getCheckedState('foreign', device.pathExternalTotalConsumption, 0);
             this.setStateAsync(device.pathStartTotalConsumption, totalConsumption, true);
