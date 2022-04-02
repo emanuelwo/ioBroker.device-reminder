@@ -57,9 +57,9 @@ Es gibt für jede Gruppe an devices, alexa etc. den Button "Eingabe Prüfen". Wi
 
 Bei **Starttext** und **Endtext** kann man sich auch eine Nachricht aus einem externen Datenpunkt holen. Diese Nachricht wird mit 1 Sekunde Verzögerung aus dem Datenpunkt gelesen, nachdem sich der Status des Geräts geändert hat. Somit kann man sich per externem Script eine Nachricht erstellen lassen. Der Adapter erkennt automatisch, ob eine Nachricht aus einem Datenpunkt stammt oder ob diese manuell einfach nur eingegeben wurde. Um einen Datenpunkt auszuwählen, einfach auf die Schaltfläche mit den drei weißen Punkten klicken und dann den entsprechenden Datenpunkt auswählen. **Bitte beachten**: es kann nur entweder ein Datenpunkt **oder** eine händisch eingetragene Nachricht verwendet werden!
 
-## Variablen im Endtext
+## Platzhalter im Endtext
 
-- Gesamter Verbrauch: Wenn der Datenpunkt Wh ausgibt, so benutze die Variable **{consumption in Wh}**, anonsten **{consumption}**. Es erfolgt immer eine Umrechnung in kWh
+- Gesamter Verbrauch: Wenn der Datenpunkt Wh ausgibt, so benutze den Platzhalter **{consumption in Wh}**, anonsten **{consumption}**. Es erfolgt immer eine Umrechnung in kWh
 
 Ein Beispiel für den Endtext: 'Die Waschmaschine ist fertig. Verbrauch: {consumption in Wh} kWh'
 

@@ -1118,8 +1118,6 @@ class deviceReminder extends utils.Adapter {
                 const consumption = endConsumption - startConsumption;
                 const consumptionDevided = consumption / 1000.0
 
-                msg = msg.replace("{startConsumption}", startConsumption);
-                msg = msg.replace("{endConsumption}", endConsumption);
                 msg = msg.replace("{consumption}", consumption);
                 msg = msg.replace("{consumption in Wh}", consumptionDevided);
 

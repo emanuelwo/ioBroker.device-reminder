@@ -59,9 +59,9 @@ With **Start text** and **End text** you can also get a message from an external
 <br>
 <br>
 
-## Paramters in End Text
+## Placeholder in End Text
 
-- total consumption: If the data point returns Wh, use the variable **{consumption in Wh}**, otherwise **{consumption}**. There is always a conversion to kWh
+- total consumption: If the data point returns Wh, use the placeholder **{consumption in Wh}**, otherwise **{consumption}**. There is always a conversion to kWh
 
 An example of the end text: 'The washing machine is ready. Consumption: {consumption in Wh} kWh'
 
